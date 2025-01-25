@@ -2,7 +2,7 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/Homescreen.dart';
-import 'package:flutter_application_1/model/functions/functions.dart';
+import 'package:flutter_application_1/model/functions/dbfunctions.dart';
 import 'package:flutter_application_1/model/model.dart';
 import 'package:image_picker/image_picker.dart';
 

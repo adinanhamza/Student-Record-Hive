@@ -2,7 +2,7 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/Homescreen.dart';
-import 'package:flutter_application_1/model/functions/functions.dart';
+import 'package:flutter_application_1/model/functions/dbfunctions.dart';
 import 'package:flutter_application_1/model/model.dart';
 import 'package:image_picker/image_picker.dart';
 
@@ -186,12 +186,12 @@ class _AddstudentState extends State<Addstudent> {
           backgroundColor: Colors.red,
           content: Text('invalid format or fill the form')));
     }
-    // print('$name $age  $address');
+   
 
      final studentdata = StudentModel(name: namecontroller.text, age: agecontroller.text,address: addresscontroller.text,image: selectedImage?.path?? ' ');
 
     studentadd(studentdata);
     Navigator.of(context)
-        .push(MaterialPageRoute(builder: (context) => Homescreen()));
+        .push(MaterialPageRoute(builder: (context) => Homescreen()));;
   }
 }

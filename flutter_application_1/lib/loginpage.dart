@@ -28,19 +28,7 @@ class _Loginpage2State extends State<Loginpage> {
     return SafeArea(
       child: Scaffold(
         backgroundColor: Colors.brown[100],
-        // appBar: AppBar(
-        //   title: Text(
-        //     'Student Record',
-        //     style: TextStyle(
-        //       color: Colors.brown,
-        //       fontStyle: FontStyle.italic,
-        //       fontWeight: FontWeight.bold,
-        //       fontSize: 30
-        //     ),
-        //   ),
-        //   centerTitle: true,
-        //   backgroundColor: const Color.fromARGB(255, 239, 239, 119),
-        // ),
+       
         body: Center(
           child: Card(
             elevation: 10,
@@ -134,22 +122,7 @@ class _Loginpage2State extends State<Loginpage> {
     String username = _usernamecontroll.text.trim();
     String password = _passwordcontroller.text.trim();
 
-    // SharedPreferences sharedpre = await SharedPreferences.getInstance();
-
-    // if (username == 'adinanhamza' && password == 'password') {
-    //   SharedPreferences sharedpre = await SharedPreferences.getInstance();
-    //   await sharedpre.setBool('isLoggedin', true);
-    //   ScaffoldMessenger.of(context)
-    //       .showSnackBar(SnackBar(content: Text('Login Sucessful')));
-    //   Navigator.of(context)
-    //       .pushReplacement(MaterialPageRoute(builder: (ctx) => Loginpage()));
-    // } else {
-    //   ScaffoldMessenger.of(context).showSnackBar(
-    //     SnackBar(
-    //       content: Text('ivalid username or password'),
-    //     ),
-    //   );
-    // }
+    
 
     SharedPreferences sharedpre = await SharedPreferences.getInstance();
 
@@ -169,14 +142,7 @@ class _Loginpage2State extends State<Loginpage> {
   }
 
   Future<void> _checkLoginStatus() async {
-    // SharedPreferences sharedpre = await SharedPreferences.getInstance();
-
-    // bool? isLoggedin = sharedpre.getBool('isLoggedin');
-    // if (isLoggedin == true) {
-    //   Navigator.of(context)
-    //       .pushReplacement(MaterialPageRoute(builder: (ctx) => Homescreen()));
-    // }
-
+    
     SharedPreferences sharedpre = await SharedPreferences.getInstance();
 
     bool ? isLoggedin = sharedpre.getBool('isLoggedin');

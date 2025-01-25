@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/editstudent.dart';
 import 'package:flutter_application_1/model/model.dart';
 import 'package:hive_flutter/adapters.dart';
 
 ValueNotifier<List<StudentModel>> studentlistnotifier = ValueNotifier([]);
-
 
 
 Future <void> studentadd(StudentModel student)async{
@@ -11,7 +11,6 @@ Future <void> studentadd(StudentModel student)async{
   await sbox.add(student);
   getallsudents();
 }
-
 
 
 Future <void> getallsudents()async{
@@ -22,7 +21,6 @@ Future <void> getallsudents()async{
 }
 
 
-
 Future <void> deletestudent(int index)async{
   final sbox = await Hive.openBox<StudentModel>('studentdatabase');
   await sbox.deleteAt(index);
@@ -30,8 +28,8 @@ Future <void> deletestudent(int index)async{
 }
 
 
-
 Future <void> studentedit(int index,StudentModel value)async{
   final sbox = await Hive.openBox<StudentModel>('studentdatabase');
   await sbox.putAt(index, value);
 }
+
