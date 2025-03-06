@@ -2,9 +2,11 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/controller/functions/dbfunctions.dart';
+import 'package:flutter_application_1/controller/functions/list_provider.dart';
 import 'package:flutter_application_1/model/model.dart';
 import 'package:flutter_application_1/view/Homescreen.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:provider/provider.dart';
 
 class Addstudent extends StatefulWidget {
   const Addstudent({super.key});
@@ -24,6 +26,7 @@ class _AddstudentState extends State<Addstudent> {
 
   @override
   Widget build(BuildContext context) {
+    final studentpro = Provider.of<studentProvider>(context);
     return SafeArea(
       child: Scaffold(
         // backgroundColor: colors,,
@@ -172,6 +175,7 @@ class _AddstudentState extends State<Addstudent> {
   
 
   Future add() async {
+    final studentpro = Provider.of<studentProvider>(context);
      namecontroller.text.trim();
     agecontroller.text.toString();
   
@@ -189,7 +193,7 @@ class _AddstudentState extends State<Addstudent> {
    
 
      final studentdata = StudentModel(name: namecontroller.text, age: agecontroller.text,address: addresscontroller.text,image: selectedImage?.path?? ' ');
-
+  studentpro.addstudent(studentdata);
     studentadd(studentdata);
     Navigator.of(context)
         .push(MaterialPageRoute(builder: (context) => Homescreen()));

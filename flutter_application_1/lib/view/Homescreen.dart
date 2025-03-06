@@ -33,10 +33,10 @@ class _HomescreenState extends State<Homescreen> {
         
     getallsudents();
     searchListNew();
-    final studentprovider = Provider.of<studentProvider>(context);
+    final studentpro = Provider.of<studentProvider>(context);
     final displaylist = search.isNotEmpty ? 
-    studentprovider.searchstudents(search)
-    : studentprovider.students;
+    studentpro.searchstudents(search)
+    : studentpro.students;
 
     return SafeArea(
       child: Scaffold(
