@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/view/editstudent.dart';
 import 'package:flutter_application_1/model/model.dart';
 import 'package:hive_flutter/adapters.dart';
 
