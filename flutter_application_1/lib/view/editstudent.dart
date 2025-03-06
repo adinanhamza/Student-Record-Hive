@@ -161,6 +161,7 @@ class _EditstudentState extends State<Editstudent> {
   
 
   Future add() async {
+    final studentpro = 
      namecontroller.text.trim();
     agecontroller.text.toString();
   
