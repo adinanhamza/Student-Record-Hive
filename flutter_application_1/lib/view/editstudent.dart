@@ -1,10 +1,12 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/controller/functions/list_provider.dart';
 import 'package:flutter_application_1/view/Homescreen.dart';
 import 'package:flutter_application_1/controller/functions/dbfunctions.dart';
 import 'package:flutter_application_1/model/model.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:provider/provider.dart';
 
 class Editstudent extends StatefulWidget {
   final int  index;
@@ -161,7 +163,7 @@ class _EditstudentState extends State<Editstudent> {
   
 
   Future add() async {
-    final studentpro = 
+    final studentpro = Provider.of<studentProvider>(context);
      namecontroller.text.trim();
     agecontroller.text.toString();
   
@@ -179,7 +181,7 @@ class _EditstudentState extends State<Editstudent> {
     // print('$name $age  $address');
 
      final studentdata = StudentModel(name: namecontroller.text, age: agecontroller.text,address: addresscontroller.text,image: selectedImage?.path?? ' ');
-
+studentpro.editstudent(widget.index,studentdata);
    studentedit(widget.index,studentdata);
     Navigator.of(context)
         .push(MaterialPageRoute(builder: (context) => Homescreen()));
