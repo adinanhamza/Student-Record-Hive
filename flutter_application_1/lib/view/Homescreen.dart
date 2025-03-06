@@ -1,13 +1,13 @@
 import 'dart:io';
-
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/controller/functions/list_provider.dart';
 import 'package:flutter_application_1/view/addstudent.dart';
 import 'package:flutter_application_1/view/editstudent.dart';
 import 'package:flutter_application_1/view/loginpage.dart';
 import 'package:flutter_application_1/controller/functions/dbfunctions.dart';
 import 'package:flutter_application_1/model/model.dart';
 import 'package:flutter_application_1/view/details.dart';
-import 'package:image_picker/image_picker.dart';
+import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class Homescreen extends StatefulWidget {
@@ -24,14 +24,20 @@ class _HomescreenState extends State<Homescreen> {
   void searchListNew() {
     searched = studentlistnotifier.value
         .where((smodel) =>
-            smodel.name.toLowerCase().contains(search.toLowerCase()))
+            smodel.name.toLowerCase().contains(search.toLowerCase())) 
         .toList();
   }
 
   @override
   Widget build(BuildContext context) {
+        
     getallsudents();
     searchListNew();
+    final studentprovider = Provider.of<studentProvider>(context);
+    final displaylist = search.isNotEmpty ? 
+    studentprovider.searchstudents(search)
+    : studentprovider.students;
+
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
@@ -72,15 +78,7 @@ class _HomescreenState extends State<Homescreen> {
                 ),
               ),
             ),
-            Expanded(
-              child: ValueListenableBuilder<List<StudentModel>>(
-                valueListenable: studentlistnotifier,
-                builder: (context, studentList, child) {
-                  final displayList = search.isNotEmpty ? searched : studentList;
-                  return buildStudentList(displayList);
-                },
-              ),
-            ),
+           
             Row(
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
