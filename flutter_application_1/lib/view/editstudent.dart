@@ -1,21 +1,26 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/Homescreen.dart';
-import 'package:flutter_application_1/model/functions/dbfunctions.dart';
+import 'package:flutter_application_1/view/Homescreen.dart';
+import 'package:flutter_application_1/controller/functions/dbfunctions.dart';
 import 'package:flutter_application_1/model/model.dart';
 import 'package:image_picker/image_picker.dart';
 
-class Addstudent extends StatefulWidget {
-  const Addstudent({super.key});
+class Editstudent extends StatefulWidget {
+  final int  index;
+  final String name;
+  final String age;
+  final String address;
+  const Editstudent({super.key, required this.index,required this.name,required this.age,required this.address});
 
   @override
-  State<Addstudent> createState() => _AddstudentState();
+  State<Editstudent> createState() => _EditstudentState();
 }
 
-class _AddstudentState extends State<Addstudent> {
+class _EditstudentState extends State<Editstudent> {
   File? selectedImage; 
 
+  
   TextEditingController namecontroller = TextEditingController();
   TextEditingController agecontroller = TextEditingController();
   TextEditingController clascontroller = TextEditingController();
@@ -26,15 +31,11 @@ class _AddstudentState extends State<Addstudent> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        // backgroundColor: colors,,
         appBar: AppBar(
           title: 
-          Text('Foarm',
-          style: TextStyle(
-            fontStyle: FontStyle.italic
-          ),),
+          Text('Add New'),
           centerTitle: true,
-          backgroundColor: const Color.fromARGB(193, 225, 173, 83),
+          backgroundColor: Colors.blueGrey,
     
       ),
       body: Center(
@@ -42,17 +43,16 @@ class _AddstudentState extends State<Addstudent> {
         child: Card(
           elevation: 9,
           child: Container(
-            height: double.infinity,
-            color: const Color.fromARGB(255, 238, 230, 196),
+            color: Colors.grey[200],
             child: Padding(
               padding: const EdgeInsets.all(20.0),
               child: Column(
                  mainAxisAlignment: MainAxisAlignment.center,
-                
+      
                 children: [
                     CircleAvatar(
                           radius: 50,
-                          backgroundColor: const Color.fromARGB(255, 229, 202, 154),
+                          backgroundColor: const Color.fromARGB(255, 241, 246, 100),
                           backgroundImage: selectedImage != null
                               ? FileImage(selectedImage!) 
                               : null, 
@@ -70,13 +70,7 @@ class _AddstudentState extends State<Addstudent> {
                       
                       SizedBox(height: 5),
                       
-                        TextButton(
-                        style: TextButton.styleFrom(
-                           backgroundColor: const Color.fromARGB(63, 225, 210, 182),
-                          foregroundColor: const Color.fromARGB(167, 0, 0, 0)
-
-                        ),
-                          onPressed: (){
+                        TextButton(onPressed: (){
                       
                       pickGalleryImage();
                      }, child: 
@@ -135,14 +129,9 @@ class _AddstudentState extends State<Addstudent> {
                 onPressed: () {
               add();
                 },
-                icon: Icon(Icons.add,
-                
-                ),
+                icon: Icon(Icons.add),
                 label: Text(
-                'Add',
-                style: TextStyle(
-                  color: const Color.fromARGB(193, 0, 0, 0)
-                ),
+                'Add'
               ),
               ),
                   
@@ -165,7 +154,7 @@ class _AddstudentState extends State<Addstudent> {
     setState(() {
       selectedImage = File(returnImage.path); 
     });
-   
+    
   }
 
 
@@ -175,7 +164,7 @@ class _AddstudentState extends State<Addstudent> {
      namecontroller.text.trim();
     agecontroller.text.toString();
   
-  
+
     addresscontroller.text.trim();
     
 
@@ -186,12 +175,12 @@ class _AddstudentState extends State<Addstudent> {
           backgroundColor: Colors.red,
           content: Text('invalid format or fill the form')));
     }
-   
+    // print('$name $age  $address');
 
      final studentdata = StudentModel(name: namecontroller.text, age: agecontroller.text,address: addresscontroller.text,image: selectedImage?.path?? ' ');
 
-    studentadd(studentdata);
+   studentedit(widget.index,studentdata);
     Navigator.of(context)
-        .push(MaterialPageRoute(builder: (context) => Homescreen()));;
+        .push(MaterialPageRoute(builder: (context) => Homescreen()));
   }
 }

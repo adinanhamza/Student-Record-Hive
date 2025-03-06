@@ -1,12 +1,12 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/Addstudent.dart';
-import 'package:flutter_application_1/editstudent.dart';
-import 'package:flutter_application_1/loginpage.dart';
-import 'package:flutter_application_1/model/functions/dbfunctions.dart';
+import 'package:flutter_application_1/view/addstudent.dart';
+import 'package:flutter_application_1/view/editstudent.dart';
+import 'package:flutter_application_1/view/loginpage.dart';
+import 'package:flutter_application_1/controller/functions/dbfunctions.dart';
 import 'package:flutter_application_1/model/model.dart';
-import 'package:flutter_application_1/details.dart';
+import 'package:flutter_application_1/view/details.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
